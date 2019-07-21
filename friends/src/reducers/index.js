@@ -17,7 +17,7 @@ import {
 const initialState = {
   friends: [],
   fetchingFriends: false,
-  loggingIn,
+  //   loggingIn,
   error: null
 };
 
