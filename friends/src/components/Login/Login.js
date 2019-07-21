@@ -1,15 +1,17 @@
 import React from "react";
+import { connect } from "react-redux";
+import Loader from "react-loader-spinner";
+import { login } from "../../actions";
 
 class Login extends React.Component {
-  constructor() {
-    super();
-    this.state = {
+  state = {
+    credentials: {
       username: "",
       password: ""
-    };
-  }
+    }
+  };
 
-  handleChange = event => {
+  changeHandle = event => {
     event.preventDefault();
 
     this.setState({
@@ -17,18 +19,13 @@ class Login extends React.Component {
     });
   };
 
-  handleSubmit = event => {
+  login = event => {
     event.preventDefault();
-
-    const { username, password } = this.state;
-    this.props
-      .login(username, password)
-      .then(() => {
-        this.props.history.push("/");
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    this.props.login(this.state.credentials).then(response => {
+      if (response) {
+        this.props.history.push("/protected");
+      }
+    });
   };
 
   render() {
@@ -36,20 +33,20 @@ class Login extends React.Component {
     return (
       <div className='login-form'>
         <h1>Login Form</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.login}>
           <input
             type='text'
             name='username'
             placeholder='Username'
             value={username}
-            onChange={this.handleChange}
+            onChange={this.changeHandle}
           />
           <input
             type='password'
             name='password'
             placeholder='Password'
             value={password}
-            onChange={this.handleChange}
+            onChange={this.changeHandle}
           />
           <button type='submit'>Login</button>
         </form>
@@ -58,4 +55,12 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  error: state.error,
+  loggingIn: state.logginIn
+});
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);
