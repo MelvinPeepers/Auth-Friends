@@ -13,7 +13,7 @@ const logger = store => next => action => {
   console.log("Action", action);
 
   // moves us to the next middleware function
-  next();
+  next(action);
 
   console.log("New State", store.getState());
 };
