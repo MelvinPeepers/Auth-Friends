@@ -9,7 +9,8 @@ import {
   ADD_FRIEND_SUCCESS,
   ADD_FRIEND_FAILED,
   LOGIN_START,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  LOGIN_FAILED
 } from "../actions";
 
 //  Your initial/default state for this project could *Although does not have to* look a lot like this

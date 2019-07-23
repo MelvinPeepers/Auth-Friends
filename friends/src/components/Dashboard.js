@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchFriend } from "../actions";
+import FriendsList from "../components/Friends/FriendsList";
 
 class Dashboard extends React.Component {
   componentDidMount() {
@@ -10,7 +11,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <h1>My Friend's List</h1>
+        <FriendsList />
       </div>
     );
   }
