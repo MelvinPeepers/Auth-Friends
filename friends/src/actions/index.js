@@ -14,6 +14,7 @@ export const ADD_FRIEND_FAILED = "ADD_FRIEND_FAILED";
 
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILED = "LOGIN_FAILED";
 
 export function fetchFriend() {
   return dispatch => {
@@ -45,3 +46,13 @@ export function addNew(newText) {
 }
 
 // login
+export function login(username, password) {
+  return dispatch => {
+    dispatch({ type: LOGIN_START });
+
+    axios
+      .post("http://localhost:5000/login")
+      .then(response => {})
+      .catch(error => {});
+  };
+}
