@@ -18,27 +18,13 @@ import {
 const initialState = {
   friends: [],
   fetchingFriends: false,
-  //   loggingIn,
+  loggingIn: false,
   error: null
 };
 
 // start of my reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN_START: {
-      return {
-        ...state,
-        error: "",
-        loggingIn: true
-      };
-    }
-    case LOGIN_SUCCESS: {
-      return {
-        ...state,
-        loggingIn: false,
-        error: ""
-      };
-    }
     case FETCHING_FRIEND: {
       return {
         ...state,
@@ -79,6 +65,26 @@ const reducer = (state = initialState, action) => {
       return {
         fetchingFriends: false,
         friends: action.payload
+      };
+    }
+    case LOGIN_START: {
+      return {
+        ...state,
+        loggingIn: true
+      };
+    }
+    case LOGIN_SUCCESS: {
+      return {
+        ...state,
+        loggingIn: false,
+        error: null
+      };
+    }
+    case LOGIN_FAILED: {
+      return {
+        ...state,
+        logginIn: false,
+        errorMessage: action.payload.message
       };
     }
     default:
