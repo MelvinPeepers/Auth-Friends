@@ -18,7 +18,7 @@ import {
 const initialState = {
   friends: [],
   fetchingFriends: false,
-  loggingIn: false,
+  isLoading: false,
   error: null
 };
 
@@ -70,20 +70,20 @@ const reducer = (state = initialState, action) => {
     case LOGIN_START: {
       return {
         ...state,
-        loggingIn: true
+        isLoading: true
       };
     }
     case LOGIN_SUCCESS: {
       return {
         ...state,
-        loggingIn: false,
+        isLoading: false,
         error: null
       };
     }
     case LOGIN_FAILED: {
       return {
         ...state,
-        logginIn: false,
+        isLoading: false,
         errorMessage: action.payload.message
       };
     }
