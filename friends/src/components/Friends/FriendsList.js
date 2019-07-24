@@ -39,37 +39,46 @@ class FriendsList extends Component {
       return <h2>Retrieving Friends List, please wait...</h2>;
     }
 
+    const { name, age, email } = this.state;
+    const { friends } = this.props;
     return (
       <div className='App'>
-        <h2>My Friends</h2>
-        {/* // from reducer */}
-        {this.props.friends.map(friend => (
-          <p>
-            Name: {friend.name} <br /> Age: {friend.age} <br />
+        <h1>My Friends</h1>
+        {friends.map((friend, index) => {
+          return (
+            <p key={index}>
+              Name:{friend.name} <br /> Age:{friend.age} <br /> Email:
+              {friend.email}
+            </p>
+          );
+        })}
+        {/* {friends.map(friend, index) => (
+          <p key={index}>
+            Name:{friend.name} <br /> Age:{friend.age} <br /> Email:
             {friend.email}
           </p>
-        ))}
+        ))} */}
 
         {/* // add friends */}
         <form>
           <input
             type='text'
             name='name'
-            value={this.state.name}
+            value={name}
             onChange={this.changeHandle}
             placeholder="Friend's Name"
           />
           <input
             type='text'
             name='age'
-            value={this.state.age}
+            value={age}
             onChange={this.changeHandle}
             placeholder="Friend's Age"
           />
           <input
             type='text'
             name='email'
-            value={this.state.email}
+            value={email}
             onChange={this.changeHandle}
             placeholder="Friend's Email"
           />

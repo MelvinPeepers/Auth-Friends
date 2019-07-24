@@ -25,48 +25,6 @@ const initialState = {
 // start of my reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCHING_FRIEND: {
-      return {
-        ...state,
-        fetchingFriends: true,
-        errorMessage: null
-      };
-    }
-    case FETCHING_FRIEND_SUCCESS: {
-      return {
-        ...state,
-        fetchingFriends: false,
-        friends: action.payload
-      };
-    }
-    case FETCHING_FRIEND_FAILED: {
-      return {
-        fetchingFriends: false,
-        friends: action.payload
-      };
-    }
-    case ADD_FRIEND: {
-      //   console.log("friend added");
-      return {
-        ...state,
-        fetchingFriends: true,
-        errorMessage: false
-      };
-    }
-    case ADD_FRIEND_SUCCESS: {
-      console.log("friend success");
-      return {
-        ...state,
-        fetchingFriends: false,
-        friends: action.payload
-      };
-    }
-    case ADD_FRIEND_FAILED: {
-      return {
-        fetchingFriends: false,
-        friends: action.payload
-      };
-    }
     case LOGIN_START: {
       return {
         ...state,
@@ -87,6 +45,52 @@ const reducer = (state = initialState, action) => {
         errorMessage: action.payload.message
       };
     }
+    case FETCHING_FRIEND: {
+      return {
+        ...state,
+        fetchingFriends: true,
+        errorMessage: null
+      };
+    }
+    case FETCHING_FRIEND_SUCCESS: {
+      return {
+        ...state,
+        fetchingFriends: false,
+        errorMessage: "",
+        friends: action.payload
+      };
+    }
+    case FETCHING_FRIEND_FAILED: {
+      return {
+        fetchingFriends: false,
+        friends: action.payload
+      };
+    }
+    case ADD_FRIEND: {
+      console.log("friend added");
+      return {
+        ...state,
+        fetchingFriends: true,
+        errorMessage: false
+      };
+    }
+    case ADD_FRIEND_SUCCESS: {
+      console.log("friend success");
+      return {
+        ...state,
+        fetchingFriends: false,
+        friends: action.payload,
+        errorMessage: ""
+      };
+    }
+    case ADD_FRIEND_FAILED: {
+      console.log("friend failed");
+      return {
+        fetchingFriends: false,
+        errorMessage: action.payload
+      };
+    }
+
     default:
       return state;
   }

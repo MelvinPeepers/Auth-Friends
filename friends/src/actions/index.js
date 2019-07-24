@@ -38,9 +38,15 @@ export function fetchFriend() {
 export function addNew(newText) {
   return dispatch => {
     dispatch({ type: ADD_FRIEND });
+
+    const headers = {
+      Authorization: localStorage.getItem("token")
+    };
+
     axios
-      .post("http://localhost:5000/api/friends", newText)
+      .post("http://localhost:5000/api/friends", newText, { headers })
       .then(response => {
+        console.log("Hello");
         dispatch({ type: ADD_FRIEND_SUCCESS, payload: response.data });
       })
       .catch(error => {
