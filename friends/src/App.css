@@ -31,6 +31,12 @@ h1 {
   color: #3b5898;
 }
 
+.errorMessage {
+  font-size: 2rem;
+  color: red;
+  font-weight: bold;
+}
+
 form {
   margin-top: 50px;
 }

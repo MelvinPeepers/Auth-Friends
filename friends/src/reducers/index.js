@@ -19,7 +19,7 @@ const initialState = {
   friends: [],
   fetchingFriends: false,
   isLoading: false,
-  error: null
+  errorMessage: null
 };
 
 // start of my reducer
@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingFriends: true,
-        error: null
+        errorMessage: null
       };
     }
     case FETCHING_FRIEND_SUCCESS: {
@@ -50,7 +50,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingFriends: true,
-        error: false
+        errorMessage: false
       };
     }
     case ADD_FRIEND_SUCCESS: {
@@ -77,7 +77,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        error: null
+        errorMessage: null
       };
     }
     case LOGIN_FAILED: {

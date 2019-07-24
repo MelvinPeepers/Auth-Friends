@@ -56,18 +56,21 @@ class FriendsList extends Component {
             type='text'
             name='name'
             value={this.state.name}
+            onChange={this.changeHandle}
             placeholder="Friend's Name"
           />
           <input
             type='text'
             name='age'
             value={this.state.age}
+            onChange={this.changeHandle}
             placeholder="Friend's Age"
           />
           <input
             type='text'
             name='email'
             value={this.state.email}
+            onChange={this.changeHandle}
             placeholder="Friend's Email"
           />
           <button className='add-btn' onClick={this.addNew}>

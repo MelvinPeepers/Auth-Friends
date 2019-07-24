@@ -19,8 +19,12 @@ export const LOGIN_FAILED = "LOGIN_FAILED";
 export function fetchFriend() {
   return dispatch => {
     dispatch({ type: FETCHING_FRIEND });
+
+    const headers = {
+      Authorization: localStorage.getItem("token")
+    };
     axios
-      .get("http://localhost:5000/api/friends")
+      .get("http://localhost:5000/api/friends", { headers })
       .then(response => {
         dispatch({ type: FETCHING_FRIEND_SUCCESS, payload: response.data });
       })
@@ -50,11 +54,10 @@ export function login(username, password) {
   return dispatch => {
     dispatch({ type: LOGIN_START });
 
-    axios
+    return axios
       .post("http://localhost:5000/api/login", { username, password })
       .then(response => {
-        // console.log(response.data.token);
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data.payload);
         dispatch({ type: LOGIN_SUCCESS });
       })
       .catch(error => {

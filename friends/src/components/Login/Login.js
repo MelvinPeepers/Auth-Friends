@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "../../actions";
 
@@ -23,13 +24,23 @@ class Login extends React.Component {
     event.preventDefault();
 
     const { username, password } = this.state;
-    this.props.login(username, password);
+
+    this.props
+      .login(username, password)
+      .then(() => {
+        this.props.history.push("/");
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
     const { username, password } = this.state;
+    const { isLoading, errorMessage } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
+        {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
         <input
           type='text'
           name='username'
@@ -39,24 +50,35 @@ class Login extends React.Component {
         />
         <br />
         <input
-          type='text'
+          type='password'
           name='password'
           placeholder='Password'
           value={password}
           onChange={this.handleChange}
         />
         <br />
-        <button type='submit'>Login</button>
+        {isLoading ? (
+          <p>Logging in...</p>
+        ) : (
+          <button type='submit'>Login</button>
+        )}
       </form>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  isLoading: state.isLoading,
+  errorMessage: state.errorMessage
+});
+
 const mapDispatchToProps = {
-  login: login
+  login
 };
 
-export default connect(
-  null, //mapStateToProps,
-  mapDispatchToProps
-)(Login);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Login)
+);
