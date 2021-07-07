@@ -1,0 +1,76 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+li a {
+  text-decoration: none;
+  color: purple;
+}
+
+.firstLogin {
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  color: #3b5898;
+}
+
+.errorMessage {
+  font-size: 2rem;
+  color: red;
+  font-weight: bold;
+}
+
+form {
+  margin-top: 50px;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  margin-top: 16px;
+  margin-right: 8px;
+}
+
+button {
+  margin: 16px 0;
+}
+
+p {
+  margin: 0;
+  margin-top: 8px;
+  font-size: 14px;
+  color: rgb(41, 39, 87);
+}
+
+.login-form {
+  padding: 32px 0;
+  background: #fff;
+  border-radius: 6px;
+  /* height: 300px; */
+  margin: 1rem auto;
+  position: relative;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
